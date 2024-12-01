@@ -1,51 +1,75 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Elementos</title>
+    <title>Juego de Personajes Históricos</title>
     <style>
+     <img src="Saladino.jpg" alt="image"
         body {
-	background-image: url('fondo.jpg'); /* Imagen de fondo */
-            background-size: cover;
-            background-position: center;
-            color: white;
+		
             font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
         }
     </style>
 </head>
-<body>
-    <h1>Bienvenido a mi Página</h1>
-    <p>Aquí hay una imagen:</p>
-    <img src="OIG3.jpg" alt="Descripción de la imagen" />
-		{
-    </style>
-    <script>
-        function elegirElemento() {
-            const opciones = ["Fuego", "Agua", "Planta"];
-            const eleccion = prompt("Elige un elemento: Fuego, Agua o Planta");
+<img src="Saladino.jpg" alt="image" height="300" />Saladino=15pts
+<img src="vlad.jpg" alt="image" height="300"> Vlad=15pts
+<img src="RC.jpg" alt="image" height="300" > Ricardo=13pts
+<img src="11.jpg" alt="image" height="300" > Gomez=10pts
+<img src="22.jpg" alt="image" height="300" > Bolivar=10pts
+<img src="33.jpg" alt="image" height="300" > Washington=10pts
 
-            if (opciones.includes(eleccion)) {
-                alert("Has elegido: " + eleccion);
-                // Lógica del juego
-                if (eleccion === "Fuego") {
-                    alert("Fuego quema Planta!");
-                } else if (eleccion === "Agua") {
-                    alert("Agua apaga Fuego!");
-                } else if (eleccion === "Planta") {
-                    alert("Planta absorbe Agua!");
-                }
+
+<body>
+	  
+    <h1>Juego de Personajes Históricos</h1>
+    <button onclick="jugar('Gómez')">Gómez</button>
+    <button onclick="jugar('Saladino')">Saladino</button>
+    <button onclick="jugar('Vlad Tepes')">Vlad Tepes</button>
+    <button onclick="jugar('Bolívar')">Bolívar</button>
+    <button onclick="jugar('Ricardo Corazón de León')">Ricardo Corazón de León</button>
+    <button onclick="jugar('Washington')">Washington</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function jugar(eleccionJugador) {
+            const opciones = ['Gómez', 'Saladino', 'Vlad Tepes', 'Bolívar', 'Ricardo Corazón de León', 'Washington'];
+            const eleccionComputadora = opciones[Math.floor(Math.random() * opciones.length)];
+            
+            let resultado = '';
+
+            // Definimos las reglas del juego
+            const reglas = {
+                'Gómez': { gana: ['Ricardo Corazón de León'], empata: ['Washington', 'Bolívar'], pierde: ['Vlad Tepes', 'Saladino'] },
+                'Saladino': { gana: ['Gómez', 'Washington', 'Bolívar'], empata: ['Vlad Tepes'], pierde: ['Ricardo Corazón de León'] },
+                'Vlad Tepes': { gana: ['Gómez', 'Washington', 'Bolívar', 'Ricardo Corazón de León'], empata: ['Saladino'], pierde: [] },
+                'Bolívar': { gana: [], empata: ['Gómez', 'Washington'], pierde: ['Vlad Tepes', 'Saladino', 'Ricardo Corazón de León'] },
+                'Ricardo Corazón de León': { gana: ['Gómez', 'Washington', 'Bolívar'], empata: [], pierde: ['Vlad Tepes', 'Saladino'] },
+                'Washington': { gana: [], empata: ['Gómez', 'Bolívar'], pierde: ['Vlad Tepes', 'Saladino', 'Ricardo Corazón de León'] }
+            };
+
+            // Determinamos el resultado
+            if (eleccionJugador === eleccionComputadora) {
+                resultado = `¡Es un empate! Ambos eligieron ${eleccionComputadora}.`;
+            } else if (reglas[eleccionJugador].gana.includes(eleccionComputadora)) {
+                resultado = `¡Ganaste! La computadora eligió ${eleccionComputadora}.`;
+            } else if (reglas[eleccionJugador].pierde.includes(eleccionComputadora)) {
+                resultado = `¡Perdiste! La computadora eligió ${eleccionComputadora}.`;
             } else {
-                alert("Opción no válida. Por favor, elige Fuego, Agua o Planta.");
+                resultado = `¡Es un empate! Ambos eligieron ${eleccionComputadora}.`; // Para casos no especificados
             }
+
+            document.getElementById('resultado').innerText = resultado;
         }
     </script>
-</head>
-<body onload="elegirElemento()">
-    <h1>Bienvenido al Juego de Elementos</h1>
-    <p>Elige tu elemento y descubre su poder!</p>
 </body>
 </html>
-```
 
