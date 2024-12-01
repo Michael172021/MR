@@ -1,0 +1,50 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Elementos</title>
+    <style>
+        body {
+            background-image: url('fondo.jpg'); /* Cambia 'fondo.jpg´ por el nombre de tu imagen */
+            background-size: cover; 
+            background-position: center; 
+            color: white; 
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenido al Juego de Elementos</h1>
+    <p>Elige tu elemento:</p>
+    <button onclick="elegirElemento('Fuego')">Fuego</button>
+    <button onclick="elegirElemento('Agua')">Agua</button>
+    <button onclick="elegirElemento('Planta')">Planta</button>
+
+    <script>
+        function elegirElemento(eleccion) {
+            let resultado;
+            if (eleccion === "Fuego") {
+                resultado = "Fuego quema Planta!";
+            } else if (eleccion === "Agua") {
+                resultado = "Agua apaga Fuego!";
+            } else if (eleccion === "Planta") {
+                resultado = "Planta absorbe Agua!";
+            } else {
+                resultado = "Opción no válida.";
+            }
+            alert("Has elegido: " + eleccion + "\n" + resultado);
+        }
+    </script>
+</body>
+</html>
+```
